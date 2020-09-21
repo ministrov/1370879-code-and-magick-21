@@ -184,7 +184,11 @@
   var fireballSize = 22;
 
   var getFireballSpeed = function (isMovingLeft) {
-    return isMovingLeft ? 2:5;
+    if (isMovingLeft) {
+      return 2;
+    }
+
+    return 5;
     }
   }
 
