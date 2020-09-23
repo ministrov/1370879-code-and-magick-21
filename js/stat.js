@@ -44,14 +44,14 @@ window.renderStatistics = function (ctx, names, times) {
 
   ctx.fillStyle = '#000';
 
-  var maxTime = getMaxElement(times);
+  const maxTime = getMaxElement(times);
 
-  var getSaturation = function (min, max) {
-    var saturation = Math.floor(Math.random() * (max - min) + min);
+  const getSaturation = function (min, max) {
+    let saturation = Math.floor(Math.random() * (max - min) + min);
     ctx.fillStyle = 'rgba(0, 0, ' + saturation + ', 1)';
   };
 
-  for (var i = 0; i < names.length; i++) {
+  for (let i = 0; i < names.length; i++) {
     ctx.fillStyle = '#000';
     ctx.fillText(Math.round(times[i]), BAR_X + (BAR_GAP + BAR_WIDTH) * i, BAR_GAP + BAR_WIDTH);
     if (names[i] === 'Вы') {
