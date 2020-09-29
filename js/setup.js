@@ -11,19 +11,20 @@ const similarListElement = document.querySelector('.setup-similar-list');
 const similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 const wizards = [];
 
-const getRandomNumber = function (max) {
-  return Math.floor(Math.round() * max);
+const getRandomItem = function () {
+  let elements = wizards;
+  return elements[Math.floor(Math.random() * elements.length)];
 };
 
 const renderWizardsArr = function (wizardsQuantity) {
   for (let i = 0; i < wizardsQuantity; i++) {
     wizards[i] = {
       name:
-        WIZARD_NAMES[getRandomNumber(WIZARD_NAMES.length)] +
+        WIZARD_NAMES[getRandomItem(WIZARD_NAMES.length)] +
         ' ' +
-        WIZARD_SURNAMES[getRandomNumber(WIZARD_SURNAMES.length)],
-      coatColor: WIZARD_COLORS[getRandomNumber(WIZARD_COLORS.length)],
-      eyesColor: WIZARD_EYES[getRandomNumber(WIZARD_EYES.length)],
+        WIZARD_SURNAMES[getRandomItem(WIZARD_SURNAMES.length)],
+      coatColor: WIZARD_COLORS[getRandomItem(WIZARD_COLORS.length)],
+      eyesColor: WIZARD_EYES[getRandomItem(WIZARD_EYES.length)],
     };
   }
 };
