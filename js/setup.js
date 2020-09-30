@@ -11,19 +11,17 @@ const similarListElement = document.querySelector('.setup-similar-list');
 const similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 const wizards = [];
 
+// Функуия нахождения случайного элемета
 const getRandomItem = function (elements) {
   return elements[Math.floor(Math.random() * elements.length)];
 };
-
+// Функция генерации случайных данных из массива
 const renderWizardsArr = function (wizardsQuantity) {
   for (let i = 0; i < wizardsQuantity; i++) {
     wizards[i] = {
-      name:
-        WIZARD_NAMES[getRandomItem(WIZARD_NAMES[i])] +
-        ' ' +
-        WIZARD_SURNAMES[getRandomItem(WIZARD_SURNAMES[i])],
-      coatColor: WIZARD_COLORS[getRandomItem(WIZARD_COLORS[i])],
-      eyesColor: WIZARD_EYES[getRandomItem(WIZARD_EYES[i])],
+      name: getRandomItem(WIZARD_NAMES) + ' ' + getRandomItem(WIZARD_SURNAMES),
+      colorCoat: getRandomItem(WIZARD_COLORS),
+      eyesColor: getRandomItem(WIZARD_EYES)
     };
   }
 };
