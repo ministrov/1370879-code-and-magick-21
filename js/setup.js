@@ -7,65 +7,20 @@ const WIZARD_COLORS = [`rgb(101, 137, 164)`, `rgb(241, 43, 107)`, `rgb(146, 100,
 const WIZARD_EYES = [`black`, `red`, `blue`, `yellow`, `green`];
 const MIN_NAME_LENGTH = 2;
 const MAX_NAME_LENGTH = 25;
-const DB_WIZARDS = {
-  name: [
-    `Иван`,
-    `Хуан Себастьян`,
-    `Мария`,
-    `Кристоф`,
-    `Виктор`,
-    `Юлия`,
-    `Люпита`,
-    `Вашингтон`,
-  ],
-  surname: [
-    `да Марья`,
-    `Верон`,
-    `Мирабелла`,
-    `Вальц`,
-    `Онопко`,
-    `Топольницкая`,
-    `Нионго`,
-    `Ирвинг`,
-  ],
-  coatColor: [
-    `rgb(101, 137, 164)`,
-    `rgb(241, 43, 107)`,
-    `rgb(146, 100, 161)`,
-    `rgb(56, 159, 117)`,
-    `rgb(215, 210, 55)`,
-    `rgb(0, 0, 0)`,
-  ],
-  eyesColor: [
-    `black`,
-    `red`,
-    `blue`,
-    `yellow`,
-    `green`,
-  ],
-  fireballColor: [
-    `#ee4830`,
-    `#e6e848`,
-    `#30a8ee`,
-    `#5ce6c0`,
-    `#e848d5`,
-  ],
-};
+const FIRE_BALL_COLOR = [`#ee4830`, `#e6e848`, `#30a8ee`, `#5ce6c0`, `#e848d5`];
 const userDialog = document.querySelector(`.setup`);
-userDialog.classList.remove(`hidden`);
 const similarListElement = document.querySelector(`.setup-similar-list`);
 const similarWizardTemplate = document.querySelector(`#similar-wizard-template`).content.querySelector(`.setup-similar-item`);
 const wizards = [];
-const setup = document.querySelector(`.setup`);
 const setupOpen = document.querySelector(`.setup-open`);
-const setupClose = document.querySelector(`.setup-close`);
-const userNameInput = document.querySelector(`.setup-user-name`);
-const wizardCoatColor = setup.querySelector(`.setup-wizard .wizard-coat`);
-const wizardCoatColorInput = setup.querySelector(`input[name = coat-color]`);
-const wizardEyesColor = setup.querySelector(`.setup-wizard .wizard-eyes`);
-const wizardEyesColorInput = setup.querySelector(`input[name = eyes-color]`);
-const fireballColor = setup.querySelector(`.setup-fireball-wrap`);
-const fireballColorInput = setup.querySelector(`input[name = fireball-color]`);
+const setupClose = userDialog.querySelector(`.setup-close`);
+const userNameInput = userDialog.querySelector(`.setup-user-name`);
+const wizardCoatColor = userDialog.querySelector(`.setup-wizard .wizard-coat`);
+const wizardCoatColorInput = userDialog.querySelector(`input[name = coat-color]`);
+const wizardEyesColor = userDialog.querySelector(`.setup-wizard .wizard-eyes`);
+const wizardEyesColorInput = userDialog.querySelector(`input[name = eyes-color]`);
+const fireballColor = userDialog.querySelector(`.setup-fireball-wrap`);
+const fireballColorInput = userDialog.querySelector(`input[name = fireball-color]`);
 // Функуия нахождения случайного элемета
 const getRandomItem = function (elements) {
   return elements[Math.floor(Math.random() * elements.length)];
@@ -103,7 +58,7 @@ userDialog.querySelector(`.setup-similar`).classList.remove(`hidden`);
 const onSetupEscPress = (evt) => {
   if (evt.key === `Escape` && userNameInput !== document.activeElement) {
     evt.preventDefault();
-    closePopup(setup);
+    closePopup(userDialog);
   }
 };
 
@@ -118,51 +73,51 @@ const closePopup = (popup) => {
 };
 
 const getRandomCoatColor = () => {
-  const color = DB_WIZARDS.coatColor[getRandomItem(0, DB_WIZARDS.coatColor.length - 1)];
+  const color = getRandomItem(WIZARD_COLORS);
 
   wizardCoatColor.style.fill = color;
   wizardCoatColorInput.value = color;
 };
 
 const getRandomEyesColor = () => {
-  const color = DB_WIZARDS.eyesColor[getRandomItem(0, DB_WIZARDS.eyesColor.length - 1)];
+  const color = getRandomItem(WIZARD_EYES);
 
   wizardEyesColor.style.fill = color;
   wizardEyesColorInput.value = color;
 };
 
 const getRandomfireballColor = () => {
-  const color = DB_WIZARDS.fireballColor[getRandomItem(0, DB_WIZARDS.fireballColor.length - 1)];
+  const color = getRandomItem(FIRE_BALL_COLOR);
 
   fireballColor.style.backgroundColor = color;
   fireballColorInput.value = color;
 };
 
 setupOpen.addEventListener(`click`, function () {
-  openPopup(setup);
+  openPopup(userDialog);
 });
 
 setupOpen.addEventListener(`keydown`, function (evt) {
   if (evt.key === `Enter`) {
     evt.preventDefault();
-    openPopup(setup);
+    openPopup(userDialog);
   }
 });
 
 setupClose.addEventListener(`click`, function () {
-  closePopup(setup);
+  closePopup(userDialog);
 });
 
 setupClose.addEventListener(`keydown`, function (evt) {
   if (evt.key === `Enter`) {
     evt.preventDefault();
-    closePopup(setup);
+    closePopup(userDialog);
   }
 });
 
-wizardCoatColor.addEventListener(`click`, getRandomCoatColor());
-wizardEyesColor.addEventListener(`click`, getRandomEyesColor());
-fireballColor.addEventListener(`click`, getRandomfireballColor());
+wizardCoatColor.addEventListener(`click`, getRandomCoatColor);
+wizardEyesColor.addEventListener(`click`, getRandomEyesColor);
+fireballColor.addEventListener(`click`, getRandomfireballColor);
 
 userNameInput.addEventListener(`invalid`, () => {
   const valueLength = userNameInput.value.length;
