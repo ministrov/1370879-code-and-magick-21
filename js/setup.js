@@ -123,9 +123,9 @@ userNameInput.addEventListener(`invalid`, () => {
   const valueLength = userNameInput.value.length;
 
   if (valueLength < MIN_NAME_LENGTH) {
-    userNameInput.setCustomValidity(`Еще` + (MIN_NAME_LENGTH - valueLength) + `символов`);
+    userNameInput.setCustomValidity(`Еще ` + (MIN_NAME_LENGTH - valueLength) + ` символов`);
   } else if (valueLength > MAX_NAME_LENGTH) {
-    userNameInput.setCustomValidity(`Удалите лишние` + (valueLength - MAX_NAME_LENGTH) + `символов`);
+    userNameInput.setCustomValidity(`Удалите лишние ` + (valueLength - MAX_NAME_LENGTH) + ` символов`);
   } else {
     userNameInput.setCustomValidity(``);
   }
@@ -137,9 +137,9 @@ userNameInput.addEventListener(`input`, () => {
   const valueLength = userNameInput.value.length;
 
   if (valueLength < MIN_NAME_LENGTH) {
-    userNameInput.setCustomValidity(`Еще` + (MIN_NAME_LENGTH - valueLength) + `символов`);
+    userNameInput.setCustomValidity(`Еще ` + (MIN_NAME_LENGTH - valueLength) + ` символов`);
   } else if (valueLength > MAX_NAME_LENGTH) {
-    userNameInput.setCustomValidity(`Удалите лишние` + (valueLength - MAX_NAME_LENGTH) + `символов`);
+    userNameInput.setCustomValidity(`Удалите лишние ` + (valueLength - MAX_NAME_LENGTH) + ` символов`);
   } else {
     userNameInput.setCustomValidity(``);
   }
