@@ -5,8 +5,6 @@
   const setupClose = userDialog.querySelector(`.setup-close`);
   const userDialog = document.querySelector(`.setup`);
   const userNameInput = userDialog.querySelector(`.setup-user-name`);
-  window.userNameInput = userNameInput;
-  window.userDialog = userDialog;
 
   const onSetupEscPress = (evt) => {
     if (evt.key === `Escape` && userNameInput !== document.activeElement) {
@@ -47,4 +45,9 @@
       closePopup(userDialog);
     }
   });
+
+  window.popup = {
+    userNameInput,
+    userDialog
+  };
 })();
