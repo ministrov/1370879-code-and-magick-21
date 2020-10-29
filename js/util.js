@@ -28,8 +28,8 @@
     }
   };
   window.util = {
-    isRenderWizardsArr: isRenderWizardsArr,
+    isRenderWizardsArr,
 
-    getRandomItem: getRandomItem
+    getRandomItem
   };
 })();
