@@ -20,6 +20,8 @@
 
   window.util = {
     isRenderWizardsArr,
-    getRandomItem
+    getRandomItem,
+    WIZARD_COLORS,
+    WIZARD_EYES
   };
 })();

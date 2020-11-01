@@ -2,8 +2,8 @@
 
 (function () {
   const setupOpen = document.querySelector(`.setup-open`);
-  const setupClose = userDialog.querySelector(`.setup-close`);
   const userDialog = document.querySelector(`.setup`);
+  const setupClose = userDialog.querySelector(`.setup-close`);
   const userNameInput = userDialog.querySelector(`.setup-user-name`);
 
   const onSetupEscPress = (evt) => {
