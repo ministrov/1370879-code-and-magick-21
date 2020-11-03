@@ -1,12 +1,11 @@
 'use strict';
 
 (function () {
-  const WIZARD_NAMES = [`Иван`, `Хуан Себастьян`, `Мария`, `Кристоф`, `Виктор`, `Юлия`, `Люпита`, `Вашингтон`];
-  const WIZARD_SURNAMES = [`да Марья`, `Верон`, `Мирабелла`, `Вальц`, `Онопко`, `Топольницкая`, `Нионго`, `Ирвинг`];
   const WIZARDS_QUANTITY = 4;
   const similarListElement = document.querySelector(`.setup-similar-list`);
   const similarWizardTemplate = document.querySelector(`#similar-wizard-template`).content.querySelector(`.setup-similar-item`);
-  const wizards = [];
+
+  const wizards = window.util.isRenderWizardsArr(WIZARDS_QUANTITY);
 
   const renderWizard = function (wizard) {
     let wizardElement = similarWizardTemplate.cloneNode(true);
@@ -19,7 +18,7 @@
   };
 
   const fragment = document.createDocumentFragment();
-  window.util.isRenderWizardsArr(WIZARDS_QUANTITY);
+
   wizards.forEach((item) => {
     fragment.appendChild(renderWizard(item));
   });
@@ -28,9 +27,6 @@
   window.popup.userDialog.querySelector(`.setup-similar`).classList.remove(`hidden`);
 
   window.setup = {
-    WIZARD_NAMES,
-    WIZARD_SURNAMES,
-    WIZARDS_QUANTITY,
     wizards
   };
 })();
