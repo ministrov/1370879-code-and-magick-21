@@ -1,14 +1,15 @@
 'use strict';
 
 (function () {
-  const URL = `https://21.javascript.pages.academy/code-and-magick/data`;
+  const GET_URL = `https://21.javascript.pages.academy/code-and-magick/data`;
+  const POST_URL = `https://21.javascript.pages.academy/code-and-magick`;
+  const TIME_OUT_MS = 10000;
+
   const StatusCode = {
     OK: 200
   };
 
-  const TIME_OUT_MS = 10000;
-
-  window.load = function (onSuccess, onError) {
+  const request = (onSuccess, onError, data) => {
     const xhr = new XMLHttpRequest();
     xhr.responseType = `json`;
 
@@ -29,7 +30,19 @@
     });
 
     xhr.timeout = TIME_OUT_MS;
-    xhr.open(`GET`, URL);
-    xhr.send();
+
+    if (data) {
+      xhr.open(`POST`, POST_URL);
+      xhr.send(data);
+    } else {
+      xhr.open(`GET`, GET_URL);
+      xhr.send();
+    }
+
+  };
+
+  window.backend = {
+    load: request,
+    save: request
   };
 })();

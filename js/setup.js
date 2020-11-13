@@ -5,7 +5,7 @@
   const similarListElement = document.querySelector(`.setup-similar-list`);
   const similarWizardTemplate = document.querySelector(`#similar-wizard-template`).content.querySelector(`.setup-similar-item`);
 
-  const wizards = window.util.isRenderWizardsArr(MAX_SIMILAR_WIZARD_COUNT);
+  let wizards = window.util.isRenderWizardsArr(MAX_SIMILAR_WIZARD_COUNT);
 
   const renderWizard = function (wizard) {
     let wizardElement = similarWizardTemplate.cloneNode(true);
@@ -17,8 +17,9 @@
     return wizardElement;
   };
 
-  const successHandler = function () {
+  const successHandler = (data) => {
     const fragment = document.createDocumentFragment();
+    wizards = data.slice();
 
     for (let i = 0; i < MAX_SIMILAR_WIZARD_COUNT; i++) {
       fragment.appendChild(renderWizard(wizards[i]));
@@ -40,15 +41,15 @@
     document.body.insertAdjacentElement(`afterbegin`, node);
   };
 
-  window.load(successHandler, errorHandler);
+  window.backend.load(successHandler, errorHandler);
 
   const form = document.querySelector(`.setup-wizard-form`);
 
-  const submitHandler = function (evt) {
-    window.upload(new FormData(form), function () {
-      window.popup.userDialog.classList.add(`hidden`);
-    });
+  const submitHandler = (evt) => {
+    window.backend.upload(new FormData(form));
+    window.popup.userDialog.classList.add(`hidden`);
     evt.preventDefault();
+    form.reset();
   };
 
   form.addEventListener(`submit`, submitHandler);
