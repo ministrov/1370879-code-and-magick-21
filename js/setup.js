@@ -17,14 +17,25 @@
     return wizardElement;
   };
 
-  const fragment = document.createDocumentFragment();
+  window.load(function (wizards) {
+    const fragment = document.createDocumentFragment();
 
-  wizards.forEach((item) => {
-    fragment.appendChild(renderWizard(item));
+    wizards.forEach((item) => {
+      fragment.appendChild(renderWizard(item));
+    });
+    similarListElement.appendChild(fragment);
+
+    window.popup.userDialog.querySelector(`.setup-similar`).classList.remove(`hidden`);
+  }, function () {});
+
+  const form = document.querySelector(`.setup-wizard-form`);
+
+  form.addEventListener(`submit`, function (evt) {
+    window.upload(new FormData(form), function () {
+      window.popup.userDialog.classList.add(`hidden`);
+    });
+    evt.preventDefault();
   });
-  similarListElement.appendChild(fragment);
-
-  window.popup.userDialog.querySelector(`.setup-similar`).classList.remove(`hidden`);
 
   window.setup = {
     wizards
